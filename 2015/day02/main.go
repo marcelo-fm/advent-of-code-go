@@ -3,9 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"strings"
 
-	"github.com/alexchao26/advent-of-code-go/mathy"
 	"github.com/alexchao26/advent-of-code-go/util"
 )
 
@@ -25,38 +23,7 @@ func main() {
 }
 
 func part1(input string) int {
-	var totalSqFt int
-	for _, line := range strings.Split(input, "\n") {
-		var x, y, z int
-		_, err := fmt.Sscanf(line, "%dx%dx%d", &x, &y, &z)
-		if err != nil {
-			panic(err)
-		}
-		totalSqFt += x * y * 2
-		totalSqFt += x * z * 2
-		totalSqFt += z * y * 2
-		totalSqFt += mathy.MinInt(x*y, y*z, x*z) // slack in wrapping paper...
-	}
-
-	return totalSqFt
 }
 
 func part2(input string) int {
-	var totalLen int
-	for _, line := range strings.Split(input, "\n") {
-		var x, y, z int
-		_, err := fmt.Sscanf(line, "%dx%dx%d", &x, &y, &z)
-		if err != nil {
-			panic(err)
-		}
-		cubic := x * y * z
-		totalLen += cubic
-		sides := []int{
-			2 * (x + y),
-			2 * (y + z),
-			2 * (x + z),
-		}
-		totalLen += mathy.MinInt(sides...)
-	}
-	return totalLen
 }
